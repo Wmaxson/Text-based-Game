@@ -2,10 +2,13 @@ import java.util.Scanner;
 
 public class islandQuest {
 
+
+	
 public static void main(String[] args) {
 int a = 0;
-while (  a==1 ) {
-
+//PrintWriter writer = new PrintWriter("saveFile.txt", "UTF-8");	
+while (  a==1  ) {
+a=0;
 String one = oof("You wash up on an island with know idea on how you got there. There you have a backpack. (To acess it use the command bp) \n  You see a forest. There is a column of smoke above the trees in the distence. There might be a village! \n Would you like to (a) Go twords the village? or (b) Camp out on the beach ");
 
 if(one.equals("a")) {
@@ -28,13 +31,20 @@ a++;
 }
 
 }
+	
+	
 
 
 
 
+Publuc static save(String choice) {
+writer.println(choice);
+writer.close();	
+}
 
-
-Public static 
+Public static bp() { //GT work on this later
+	System.out.print("Nothing in here yet!")
+}
 public static String oof(String foo) {
 	System.out.println(foo);
 
