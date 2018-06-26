@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class b {
+public class islandQuest {
 
 public static void main(String[] args) {
 int a = 0;
@@ -10,11 +10,15 @@ String one = oof("You wash up on an island with know idea on how you got there. 
 
 if(one.equals("a")) {
 
-oof("You decided to go twords the village.");
+aTwo = oof("You decided to go twords the village. \n As you get closer, you hear screams, and its almost night. \nWould you like to (a) go into the forest? or (b) Sleep in the forest."  );
+
+	if(aTwo.equals("")){
+	
+}
 
 } else if(one.equals("b")) {
 
-oof("You decided to camp on the beach...");
+bTwo = oof("You decided to camp on the beach");
 
 } else {
 oof("I dont understand. please choose a or b ");
@@ -30,7 +34,7 @@ a++;
 
 
 
-
+Public static 
 public static String oof(String foo) {
 	System.out.println(foo);
 
