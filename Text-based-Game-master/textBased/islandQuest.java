@@ -11,6 +11,8 @@ public class game {
 	static int heroWeapon = 0;
 	static int heroSpeed = 0;
 	static String monsterName;
+	static String monsterWeapon;
+	static int monsterAttack;
 	
 	/*
 	0 = old
@@ -36,15 +38,18 @@ public class game {
 			if(HCS.equalsIgnoreCase("a")) {
 			heroClass = 0;
 			heroClassName = "Knight";
+			heroSpeed = 25;
 			
 			beachVilla();
 			} else if(HCS.equalsIgnoreCase("b")) {
 			heroClass = 1;
 			heroClassName = "Archer";
+			heroSpeed = 75;
 			beachVilla();
 			} else if(HCS.equalsIgnoreCase("c")) {
 			heroClass = 2;
 			heroClassName = "Mage";
+			heroSpeed = 50;
 			beachVilla();
 			} else {
 			choice("Im sorry I didn't understand. Please repeat that with one of the letters A, B or C. (Type in the word okay to continue)");
@@ -95,24 +100,35 @@ public class game {
 		}
 		return true;
 	}
-	public static void fight( String monsterNameTemp, int monsterMaxHealth, String weapon) {
-		
+	public static void fight( String monsterNameTemp, int monsterMaxHealth, String monsterWeaponTemp, int monsterSpeed, int monsterAttackTemp ) {
+		monsterWeapon = monsterWeaponTemp;
 		int monsterCurrentHealth = monsterMaxHealth;
+		monsterAttack = monsterAttackTemp;
 		monsterName = monsterNameTemp;
+		boolean tryToDodge = false;
 		System.out.println("You enterd a battle with " + monsterName + "!");
 		for (int i = 0; monsterCurrentHealth > 0; i++) {
-			
-		String oof = choice("Would you like to a (use your sword) b(try to dodge the enemys upcoming attack) c ");
-		 int  DMGdone = useSword();
-		monsterCurrentHealth -= DMGdone;
-		if (monsterCurrentHealth < 0) {
-			System.out.println("You did " + DMGdone + " Damage to " + monsterName);
-			System.out.println("You have defeated " + monsterName + "!");
+			tryToDodge = false;
+			String oof = choice("Would you like to a (use your sword) or, b(try to dodge the enemys upcoming attack)  ");
+			if (oof.equalsIgnoreCase("a")) {
+				int  DMGdone = useSword();
+				monsterCurrentHealth -= DMGdone;
+				if (monsterCurrentHealth < 0) {
+					System.out.println("You did " + DMGdone + " Damage to " + monsterName);
+					System.out.println("You have defeated " + monsterName + "!");
 			//return true;
-		} else {
-			System.out.println("You did " + DMGdone + " to " + monsterName + ". They have " + monsterCurrentHealth + "/" + monsterMaxHealth +" health left");
-
-		}
+				} else {
+					System.out.println("You did " + DMGdone + " to " + monsterName + ". They have " + monsterCurrentHealth + "/" + monsterMaxHealth +" health left");
+				} 
+			}else if(oof.equalsIgnoreCase("b")) {
+				tryToDodge = true;
+			}
+			if(tryToDodge = true && monsterSpeed < heroSpeed) {
+				System.out.println(monsterName + "swung his " + monsterWeapon + " ,but you dodged it!!");
+			} else if(tryToDodge = false) {
+				mnstrUseWeapon();
+			}
+			
 		//return false;
 		}
 	}
@@ -130,7 +146,6 @@ public class game {
 	
 		
 	}
-	
 	public static int useSword() {
 		
 		Random random = new Random();
@@ -154,6 +169,7 @@ public class game {
 	return 0;
 }
 	public static int useStaff() {
+
 	
 	Random random = new Random();
 	System.out.println("It's magic blasted " + monsterName);
@@ -164,5 +180,13 @@ public class game {
 	}
 	return 0;
 }
+	public static int mnstrUseWeapon() {
+		Random random = new Random();
+		System.out.println(monsterName + " " + monsterWeapon + " at " +heroName);
+			int randomInt = random.nextInt(monsterAttack/3) + monsterAttack;
+			return randomInt;
+	}
+	
 }
+
 
